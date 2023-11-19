@@ -4,3 +4,4 @@ def isPowerOfTwo(n):
     return n & (n - 1) == 0
 n=int(input("Enter any number: "))
 print(isPowerOfTwo(n))
+#check

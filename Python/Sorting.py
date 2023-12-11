@@ -1,3 +1,4 @@
+from math import floor
 def selectionSort(arr):
     for i in range(len(arr)-1):
         for j in range(i+1, len(arr)):
@@ -30,7 +31,27 @@ def insertionSort(arr):
         arr[j+1] = x
         i+=1
     print("After sorting : ", arr)
-    
+
+def shellSort(arr):
+    j=0
+    span = floor(len(arr)/2)
+    while(span >=1):
+        for k in range(0, span):
+            i=k+1
+            while(i<len(arr)):
+                x=arr[i]
+                j=i-span
+                while(j>=0):
+                    if arr[j]>x:
+                        arr[j+span] = arr[j]
+                    else:
+                        break
+                    j-=span
+                arr[j+span] = x
+                i+=span
+        span = span//2
+    print("After sorting : ", arr)
+
 
 arr = [2,9,9,7,9,2,4,5,8]
 #arr = [20,15,6,18,2]

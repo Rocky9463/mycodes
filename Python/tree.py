@@ -17,17 +17,20 @@ class BinarySearchTree:
             print('''\n__MENU__
 1.Insert (append)
 2.Display (Preorder tranversal)
-3.Stop\n''')
+3.Display (Inorder tranversal)
+4.Stop\n''')
             choice = int(input("Enter choice : "))
             match (choice):
                 case 1:
                     self.insert()
                 case 2:
-                    self.display()
+                    self.displayPreorder()
                 case 3:
+                    self.displayInorder()
+                case 4:
                     print("stopping.....")
                     i=0
-            if (choice<1 or choice >3):
+            if (choice<1 or choice >4):
                     print("!!!! Invalid input !!!!!!")
 
     def createRoot(self, data):
@@ -51,7 +54,6 @@ class BinarySearchTree:
     def insert(self):
         data = input("Enter value : ")
         if self.root == None:
-            print("No root available")
             self.createRoot(data)
         else:
             ptr = self.root
@@ -71,7 +73,7 @@ class BinarySearchTree:
             else:
                 print("!!! DUPLICATE NUMBER !!!")
 
-    def display(self):
+    def displayPreorder(self):
         ptr = self.root
         stack = deque()
         while (ptr is not None) or (stack):
@@ -82,17 +84,41 @@ class BinarySearchTree:
                 ptr = ptr.left
             if stack:
                 ptr = stack.pop()
-                
-    # def display(self):
-    #     stack = deque()
-    #     stack.append(self.root)
-    #     while stack:
-    #         ptr = stack.pop()
-    #         if ptr:
-    #             print(ptr.data, " ", end="")
-    #             stack.append(ptr.right)
-    #             stack.append(ptr.left)
 
+    def displayInorder(self):
+        ptr = self.root
+        stack = deque()
+        while (ptr is not None) or (stack):
+            while ptr is not None:
+                stack.append(ptr)
+                ptr = ptr.left
+            ptr = stack.pop()
+            print(ptr.data, end=" ")
+            ptr = ptr.right
+
+    '''def displayPostorder(self):
+        ptr = self.root
+        stack = deque()
+        print("stage1")
+        while (ptr is not None) or (stack):
+            print("stage2")
+            while ptr is not None:
+                print("stage3")
+                stack.append([ptr,1])
+                if ptr.right is not None:
+                    stack.append([ptr.right,-1])
+                    ptr = ptr.left
+            while stack:
+                print("stage4")
+                temp = stack.pop()
+                ptr = temp[0]
+                status = temp[1]
+                if status == 1:
+                    print(ptr.data, end=" ")
+                else:
+                    break
+            print("stage5")
+            ptr = None'''
 
 
 

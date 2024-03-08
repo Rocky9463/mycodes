@@ -1,3 +1,5 @@
+// WAP to count total number of objects created for that class without using for loop or any other iterative statement and restrict object creation if any threshhold value is reached.
+// METHOD 1
 import java.util.*;
 public class First {
     private static int objectCount =  0;
@@ -20,6 +22,7 @@ public class First {
             First obj4 = new First();
             First obj5 = new First();
             First obj6 = new First();
+            First obj7 = new First();
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
         }

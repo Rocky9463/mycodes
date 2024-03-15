@@ -73,9 +73,20 @@ public class voting_machine {
 
     public void comprehensiveResult(){
         System.out.println("\nComprehensive Result:");
-        System.out.println("Party A: \nVotes: " + A + ", Total Votes: " + totalVotes + "\n");
-        System.out.println("Party B: \nVotes: " + B + ", Total Votes: " + totalVotes + "\n");
-        System.out.println("Party C: \nVotes: " + C + ", Total Votes: " + totalVotes + "\n");
+        System.out.println("Party A: \nVotes: " + A + ", Total Votes: " + totalVotes);
+        System.out.println("Party B: \nVotes: " + B + ", Total Votes: " + totalVotes);
+        System.out.println("Party C: \nVotes: " + C + ", Total Votes: " + totalVotes);
+        System.out.println("--------------------------------");
+        int max = Math.max(Math.max(A, B), C);
+        if (A == B && A == C && B == C){System.out.print("Its a draw between : A & B & C");}
+        else if (A == B){System.out.print("Its a draw between : A & B");}
+        else if (A == C){System.out.print("Its a draw between : A & B");}
+        else if (C == B){System.out.print("Its a draw between : A & B");}
+        else if (max == A){System.out.println("Winner candidate : A");
+        }else if (max == B){System.out.println("Winner candidate : B");
+        }else if (max == C){System.out.println("Winner candidate : C");
+        }
+        System.out.println();
     }
     
     public static void main(String[] args) {

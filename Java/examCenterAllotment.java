@@ -48,13 +48,10 @@ public class examCenterAllotment{
         int uid = scanner.nextInt();
         int num = uid - 112310;
         if (num < total_registration && num >= 0){
-            System.out.print("Name : ");
-            System.out.println(candidate[num].name);
-            System.out.print("Date of Birth (dd-mm-yyyy): ");
-            System.out.println(candidate[num].dob);
-            System.out.print("Father's name : ");
-            System.out.println(candidate[num].fatherName);
-            System.out.println("Centers : "+"\n1. "+candidate[num].center[0]+"\n2. "+candidate[num].center[1]+"\n3. "+candidate[num].center[2]+"\n");
+            System.out.println("Name : " + candidate[num].name);
+            System.out.println("Date of Birth (dd-mm-yyyy): "+candidate[num].dob);
+            System.out.println("Father's name : "+candidate[num].fatherName);
+            System.out.println("Centers : \n1. "+candidate[num].center[0]+"\n2. "+candidate[num].center[1]+"\n3. "+candidate[num].center[2]+"\n");
         }else{
             System.out.println("Candidate not found\n");
             return -1;
@@ -73,7 +70,7 @@ public class examCenterAllotment{
             int flag = 0;
             while (flag >=0 && flag <=2){
                 int cn = flag+1;
-                System.out.println("Enter choice for "+ cn +"st center : ");
+                System.out.println("Enter choice for "+ cn +" center : ");
                 String choice = scanner.next();
                 switch (choice){
                     case "1":
@@ -87,7 +84,7 @@ public class examCenterAllotment{
                             continue;
                         }
                     case "2":
-                        if (center1 > 0){
+                        if (center2 > 0){
                             candidate[num].center[flag]="center2";
                             obj1.center2--;
                             flag++;
@@ -97,7 +94,7 @@ public class examCenterAllotment{
                             continue;
                         }
                     case "3":
-                        if (center1 > 0){
+                        if (center3 > 0){
                             candidate[num].center[flag]="center3";
                             obj1.center3--;
                             flag++;
@@ -131,12 +128,12 @@ public class examCenterAllotment{
             case "2":
                 System.out.println("Center name : center2");
                 System.out.println("Total seats : 33");
-                System.out.println("Free seats : "+obj1.center1+"\n");
+                System.out.println("Free seats : "+obj1.center2+"\n");
                 break;
             case "3":
                 System.out.println("Center name : center3");
                 System.out.println("Total seats : 34");
-                System.out.println("Free seats : "+obj1.center1+"\n");
+                System.out.println("Free seats : "+obj1.center3+"\n");
                 break;
             default:
                 System.out.println("Invalid input!!!\n");
@@ -149,7 +146,7 @@ public class examCenterAllotment{
         int freec1 = 33-obj1.center1;
         int freec2 = 33-obj1.center2;
         int freec3 = 34-obj1.center3;
-        System.out.println("+++ Center choices ++++");
+        System.out.println("+++ Center Details ++++");
         System.out.println("1. Center1 \nTotal : 33   Alloted : "+freec1+"   Free : "+obj1.center1);
         System.out.println("2. Center2 \nTotal : 33   Alloted : "+freec2+"   Free : "+obj1.center2);
         System.out.println("3. Center3 \nTotal : 34   Alloted : "+freec3+"   Free : "+obj1.center3+"\n");

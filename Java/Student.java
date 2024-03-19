@@ -1,4 +1,5 @@
 //WAP to create a class student having attribute rollno, enrollment, date of birth and total marks, now take input for five students and store accordingly, now display all student data in ascending order of rollno
+
 import java.util.*;
 public class Student {
     private int rollNo;
@@ -50,7 +51,4 @@ public class Student {
             System.out.println("DOB : "+s.dateOfBirth+"  \nTotal marks : "+ s.totalMarks+"\n");
         }
     }
-
-
-
 }

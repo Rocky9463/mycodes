@@ -80,8 +80,8 @@ public class voting_machine {
         int max = Math.max(Math.max(A, B), C);
         if (A == B && A == C && B == C){System.out.print("Its a draw between : A & B & C");}
         else if (A == B){System.out.print("Its a draw between : A & B");}
-        else if (A == C){System.out.print("Its a draw between : A & B");}
-        else if (C == B){System.out.print("Its a draw between : A & B");}
+        else if (A == C){System.out.print("Its a draw between : A & C");}
+        else if (C == B){System.out.print("Its a draw between : C & B");}
         else if (max == A){System.out.println("Winner candidate : A");
         }else if (max == B){System.out.println("Winner candidate : B");
         }else if (max == C){System.out.println("Winner candidate : C");

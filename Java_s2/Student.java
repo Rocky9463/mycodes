@@ -37,7 +37,7 @@ public class Student {
 
         for (int i = 0; i < students.length - 1; i++) {
             for (int j = i+1; j < students.length; j++) {
-                if (students[i].getRollNo() > students[j].getRollNo()) {
+                if (students[i].getRollNo() < students[j].getRollNo()) {
                     Student temp = students[i];
                     students[i] = students[j];
                     students[j] = temp;

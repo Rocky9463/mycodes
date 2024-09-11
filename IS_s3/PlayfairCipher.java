@@ -1,4 +1,93 @@
-import java.util.ArrayList;
+import java.util.LinkedHashSet;
+public class PlayfairCipher {
+    private static String alphabets = "abcdefghiklmnopqrstuvwxyz";
+    private static String cipherText="";
+    static LinkedHashSet<Character> finalKey = new LinkedHashSet<>();
+    public static String standardFunction(String text) {
+        String lowerCaseText = text.toLowerCase();
+        String cleanedText = lowerCaseText.replaceAll("\\W", "");
+        return cleanedText;
+    } 
+    public static String generatekey(String key) {
+        key = standardFunction(key).replaceAll("j", "i");
+        String fk = key + alphabets;
+        for (char c : fk.toCharArray()) {
+            finalKey.add(c);
+        }
+        String finalkeyString="";
+        Character[] finalKey1 = finalKey.toArray(new Character[finalKey.size()]);
+        for(int i=0; i<finalKey.size(); i++){
+            finalkeyString+=finalKey1[i];
+        }
+        return finalkeyString;
+    }
+    public static String cleanPlainText(String plainText){
+        String cleanedText="";
+        int i=0;
+        while(i < plainText.length()-1){
+            cleanedText += plainText.charAt((i));
+            if (plainText.charAt(i)==plainText.charAt(i+1)){
+                cleanedText += "x";
+                i+=1;
+            }else{
+                cleanedText += plainText.charAt((i+1));
+                i+=2;
+            }
+        }
+        cleanedText += plainText.charAt((plainText.length()-1));
+        if (cleanedText.length()%2!=0){
+            cleanedText+="x";
+        }
+        cleanedText = standardFunction(cleanedText);
+        return cleanedText;
+    }
+    public static int calculateModulus(int dividend, int divisor) {
+        if (divisor == 0) {
+            throw new IllegalArgumentException("Divisor cannot be zero.");
+        }
+        if(dividend<0){
+            if (divisor < 0){
+                return (Math.abs(dividend) % Math.abs(divisor)) * -1;
+            }
+            if(Math.abs(dividend)<Math.abs(divisor)){
+                return (Math.abs(divisor)-Math.abs(dividend));
+            }else{
+                int m1 = Math.abs(dividend)%Math.abs(divisor);
+                return calculateModulus(-m1,divisor);
+            }
+        }
+        return Math.abs(dividend % divisor);
+    }
+    public static String encrypt(String plainText, String key){
+        char[] p = cleanPlainText(plainText).toCharArray();
+        String finalKey = generatekey(key);
+        int r1, c1, r2, c2;
+        for(int i=0; i<p.length; i++){
+            c1  = finalKey.indexOf(p[i]);
+            c2  = finalKey.indexOf(p[i+1]);
+            r1 = c1/5; c1 = c1%5; r2=c2/5; c2=c2%5;
+            if(r1==r2){
+                cipherText+=finalKey.charAt(5*r1 + calculateModulus(c1+1, 5));
+                cipherText+=finalKey.charAt(5*r1 + calculateModulus(c2+1, 5));
+            }else if(c1==c2){
+                cipherText+=finalKey.charAt(5*calculateModulus(r1+1, 5)+c1);
+                cipherText+=finalKey.charAt(5*calculateModulus(r2+1, 5)+c2);
+            }else{
+                cipherText+=finalKey.charAt(5*r1+c2);
+                cipherText+=finalKey.charAt(5*r2+c1);
+            }
+        }        
+        return cipherText;
+    }
+    public static void main(String s[]){
+        // System.out.println(generatekey("Deepanshu"));
+        System.out.println(cleanPlainText("Hello meet us at ich"));
+        // System.out.println(encrypt("Hello meet us at ich", "deepanshu"));
+    }
+}
+
+
+/*import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 
@@ -49,3 +138,4 @@ public class PlayfairCipher {
   }
 }
 
+*/

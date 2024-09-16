@@ -40,8 +40,14 @@ public class RailFence {
         }
         return matrix;
     }
+    public static String standardFunction(String text) {
+        String lowerCaseText = text.toLowerCase();
+        String cleanedText = lowerCaseText.replaceAll("\\W", "");
+        return cleanedText;
+    }
 
     public static void encr(String p, int[]key, int col){
+        p = standardFunction(p);
         char[][] matrix = createMatrix(p, col);
         int row = matrix.length;
         col = matrix[0].length;
@@ -63,7 +69,7 @@ public class RailFence {
 
     public static void main(String s[]){
         int[] key = {2,5,3,6,1,4};
-        String p = "Hellomeetusatich";
+        String p = "Hello meet us at ich";
         String c = "eolmHlestaeuixcxth";
         int[] kc = {5,1,3,6,2,4};
         encr(p, key, key.length);  

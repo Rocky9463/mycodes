@@ -7,7 +7,8 @@ public class PlayfairCipher {
         String lowerCaseText = text.toLowerCase();
         String cleanedText = lowerCaseText.replaceAll("\\W", "");
         return cleanedText;
-    } 
+    }
+
     public static String generatekey(String key) {
         key = standardFunction(key).replaceAll("j", "i");
         String fk = key + alphabets;
@@ -21,8 +22,11 @@ public class PlayfairCipher {
         }
         return finalkeyString;
     }
-    public static String cleanPlainText(String plainText){
+
+    public static String cleanPlainText(String p){
         String cleanedText="";
+        String plainText = standardFunction(p);
+        
         int i=0;
         while(i < plainText.length()-1){
             cleanedText += plainText.charAt((i));
@@ -34,13 +38,17 @@ public class PlayfairCipher {
                 i+=2;
             }
         }
-        cleanedText += plainText.charAt((plainText.length()-1));
+        if (cleanedText.charAt(cleanedText.length()-1) != plainText.charAt((plainText.length()-1))){
+            cleanedText += plainText.charAt((plainText.length()-1));
+        }
+
+
         if (cleanedText.length()%2!=0){
             cleanedText+="x";
         }
-        cleanedText = standardFunction(cleanedText);
         return cleanedText;
     }
+
     public static int calculateModulus(int dividend, int divisor) {
         if (divisor == 0) {
             throw new IllegalArgumentException("Divisor cannot be zero.");
@@ -58,11 +66,12 @@ public class PlayfairCipher {
         }
         return Math.abs(dividend % divisor);
     }
+    
     public static String encrypt(String plainText, String key){
         char[] p = cleanPlainText(plainText).toCharArray();
         String finalKey = generatekey(key);
         int r1, c1, r2, c2;
-        for(int i=0; i<p.length; i++){
+        for(int i=0; i<p.length-1; i+=2){
             c1  = finalKey.indexOf(p[i]);
             c2  = finalKey.indexOf(p[i+1]);
             r1 = c1/5; c1 = c1%5; r2=c2/5; c2=c2%5;
@@ -81,8 +90,8 @@ public class PlayfairCipher {
     }
     public static void main(String s[]){
         // System.out.println(generatekey("Deepanshu"));
-        System.out.println(cleanPlainText("Hello meet us at ich"));
-        // System.out.println(encrypt("Hello meet us at ich", "deepanshu"));
+        // System.out.println(cleanPlainText("Hello meet us at ich"));
+        System.out.println(encrypt("Hello meet us at ich", "deepanshu"));
     }
 }
 

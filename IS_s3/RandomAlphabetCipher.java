@@ -1,27 +1,23 @@
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class RandomAlphabetCipher {
     private static final String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    private Map<Character, Character> encryptionMap;
-    private Map<Character, Character> decryptionMap;
+    HashMap<Character, Character> encryptionMap = new HashMap<>();
+    HashMap<Character, Character> decryptionMap = new HashMap<>();
 
     public RandomAlphabetCipher() {
         generateRandomMapping();
     }
 
     private void generateRandomMapping() {
-        List<Character> shuffledAlphabet = new ArrayList<>();
+        ArrayList<Character> shuffledAlphabet = new ArrayList<>();
         for (char c : ALPHABET.toCharArray()) {
             shuffledAlphabet.add(c);
         }
         Collections.shuffle(shuffledAlphabet);
 
-        encryptionMap = new HashMap<>();
-        decryptionMap = new HashMap<>();
         for (int i = 0; i < ALPHABET.length(); i++) {
             char original = ALPHABET.charAt(i);
             char mapped = shuffledAlphabet.get(i);

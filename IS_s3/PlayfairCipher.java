@@ -16,9 +16,8 @@ public class PlayfairCipher {
             finalKey.add(c);
         }
         String finalkeyString="";
-        Character[] finalKey1 = finalKey.toArray(new Character[finalKey.size()]);
-        for(int i=0; i<finalKey.size(); i++){
-            finalkeyString+=finalKey1[i];
+        for (Character element : finalKey) {
+            finalkeyString+=element;
         }
         return finalkeyString;
     }
